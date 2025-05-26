@@ -40,7 +40,7 @@ INSERT INTO users (name, email) VALUES ('Alice', 'alice@example.com');
 SELECT * FROM users;
 ```
 
-## 3. Explain the Primary Key and Foreign Key concepts in PostgreSQL.
+## 2. Explain the Primary Key and Foreign Key concepts in PostgreSQL.
 Ans: Primary keys and foreign keys are fundamental concepts in relational databases that help maintain data integrity and establish relationships between tables.
 **Primary Key:** A primary key is a unique value that is used to find a specific row of data in a table.
 **Key Characteristics:** 
@@ -127,3 +127,44 @@ CREATE TABLE enrollments (
 **Performance**: Primary keys automatically create indexes for faster queries
 **Referential Integrity**: Foreign keys ensure data consistency across tables
 **Query Optimization**: Database can optimize joins using key relationships
+
+## 3. What is the difference between the VARCHAR and CHAR data types?
+Both VARCHAR and CHAR are character data types in PostgreSQL
+**VARCHAR:** VARCHAR has a variable size & data type stores variable formate. 
+
+**Key Features**
+- Uses only the space needed for the actual string.
+- Stores the exact string without adding spaces.
+- Cannot exceed the specified characters
+
+### Example
+```sql
+CREATE TABLE users (
+    id SERIAL PRIMARY KEY,
+    username VARCHAR(50),    
+    email VARCHAR(100)    
+);
+
+INSERT INTO users (username, email) 
+VALUES ('Moon', 'moon@gail.com');
+```
+### CHAR: 
+CHAR has a fixed length. CHAR values are padded with spaces count length.
+
+**Key Features**
+- Always uses exactly characters of storage.
+- If the string is shorter than `n`, it's padded with spaces.
+- Minimal overhead since length is fixed.
+- Cannot exceed the specified `n` characters.
+
+### Example: 
+```sql
+CREATE TABLE products (
+    id SERIAL PRIMARY KEY,
+    product_code CHAR(10), 
+    name VARCHAR(100)
+);
+
+INSERT INTO products (product_code, name) 
+VALUES ('ABC123', 'Widget');
+```
