@@ -168,3 +168,93 @@ CREATE TABLE products (
 INSERT INTO products (product_code, name) 
 VALUES ('ABC123', 'Widget');
 ```
+
+## 4. Explain the purpose of the WHERE clause in a SELECT statement.
+Ans: The WHERE clause is used to filter data in a SELECT statement, allowing you to retrieve only the rows that meet specific conditions. Without a WHERE clause, a SELECT statement returns all rows from a table. This is allow only select data.
+
+```sql
+SELECT column1, column2, ...
+FROM table_name
+WHERE condition;
+```
+### **Data filtering:**
+only the data you need instead of all rows:
+```sql
+SELECT * FROM users WHERE age > 18;
+```
+### **Performance Optimization:**
+Reduces the amount of data processed and transferred:
+
+```sql
+SELECT name, email FROM users WHERE city = 'New York';
+```
+### **Precise Data Retrieval:**
+Get exactly the information you're looking for:
+
+```sql
+SELECT * FROM users WHERE username = 'john_doe';
+```
+
+### **WHERE Clause Examples**
+### Exact Match Filtering
+
+```sql
+SELECT * FROM users WHERE username = 'alex';
+```
+
+### Range Filtering
+
+```sql
+SELECT * FROM orders WHERE order_date BETWEEN '2023-01-01' AND '2023-01-31';
+SELECT * FROM products WHERE price > 100 AND price < 500;
+```
+
+### List-Based Filtering
+
+```sql
+SELECT * FROM products WHERE category_id IN (1, 2, 5);
+
+SELECT * FROM employees WHERE department_id NOT IN (3, 4);
+```
+
+### Pattern Matching
+
+```sql
+SELECT * FROM customers WHERE email LIKE '%@gmail.com';
+SELECT * FROM products WHERE name LIKE '%widget%';
+```
+
+### NULL Value Handling
+
+```sql
+SELECT * FROM users WHERE last_login IS NULL;
+SELECT * FROM users WHERE phone_number IS NOT NULL;
+```
+### Combining Multiple Conditions
+
+```sql
+SELECT * FROM sales 
+WHERE amount > 500 
+  AND sales_date >= '2023-01-01' 
+  AND sales_date <= '2023-01-31';
+
+SELECT * FROM users 
+WHERE city = 'New York' 
+   OR city = 'Los Angeles' 
+   OR city = 'Chicago';
+
+SELECT * FROM products 
+WHERE (category = 'Electronics' OR category = 'Computers') 
+  AND price < 1000;
+```
+
+### Subqueries in WHERE
+
+```sql
+SELECT * FROM orders 
+WHERE customer_id IN (
+    SELECT customer_id 
+    FROM customers 
+    WHERE country = 'Spain'
+);
+```
