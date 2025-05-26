@@ -61,4 +61,4 @@ FROM sightings;
 
 -- Problem 3: Find all sightings where the location includes "Pass"
 SELECT * FROM sightings
-WHERE location ILIKE '%Pass%';
+WHERE location LIKE '%Pass%';
