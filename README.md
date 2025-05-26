@@ -258,3 +258,49 @@ WHERE customer_id IN (
     WHERE country = 'Spain'
 );
 ```
+## 5. How can you calculate aggregate functions like COUNT(), SUM(), and AVG() in PostgreSQL?
+Aggregate functions like COUNT(), SUM() and AVG() perform calculations on a set of rows and return a single result.
+
+### **COUNT()** 
+COUNT() - Count Rows or Values. The COUNT() function counts rows or non-null values in a result set .
+**Syntax:** SELECT COUNT(*) FROM table-name;
+**Example:**
+```sql
+SELECT COUNT(*) FROM users;
+
+SELECT COUNT(email) FROM users;
+
+SELECT COUNT(DISTINCT city) FROM users;
+
+SELECT COUNT(*) FROM orders WHERE status = 'completed';
+```
+
+### **SUM() - Calculate Total**
+The SUM() function calculates the sum of a set of values .
+**Syntax:** SELECT SUM(column-name) FROM table-name;
+**Example:**
+```sql
+SELECT SUM(amount) FROM orders;
+
+SELECT SUM(price * quantity) AS total_revenue 
+FROM order_items 
+WHERE order_date >= '2023-01-01';
+
+SELECT category, SUM(price) AS total_price 
+FROM products 
+GROUP BY category;
+```
+
+### AVG() - Calculate Average
+The AVG() function calculates the average of a set of values .
+**Syntax:** SELECT AVG(column-name) FROM table-name;
+**Example:**
+```sql
+SELECT AVG(salary) FROM employees;
+
+SELECT AVG(rating) FROM reviews WHERE product_id = 123;
+
+SELECT department, AVG(salary) AS avg_salary 
+FROM employees 
+GROUP BY department;
+```
